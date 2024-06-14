@@ -133,7 +133,8 @@ const lv_font_t* ui_text_font=nullptr;
 static lv_style_t ui_text_font_style;
 static lv_obj_t *ui_label ;
 static void ui_init_font() {
-    lv_tiny_ttf_init();
+    //lv_tiny_ttf_init();
+    
     ui_text_font = lv_tiny_ttf_create_data(OpenSans_Regular_data,sizeof(OpenSans_Regular_data),70);
     if(ui_text_font==nullptr) {
         puts("Font initialization failure");
@@ -190,13 +191,17 @@ extern "C" void app_main() {
     }
 #endif
 }
-
+#ifndef ARDUINO
+uint32_t millis() {
+    return pdTICKS_TO_MS(xTaskGetTickCount());
+}
+#endif
 void loop()
 {
     static int iterations = 0;
-    static uint32_t ips_ts = pdTICKS_TO_MS(xTaskGetTickCount());
-    if(pdTICKS_TO_MS(xTaskGetTickCount())>=ips_ts+1000) {
-        ips_ts = pdTICKS_TO_MS(xTaskGetTickCount());
+    static uint32_t ips_ts = millis();
+    if(millis()>=ips_ts+1000) {
+        ips_ts = millis();
         printf("iterations: %d\n",iterations);
         iterations=0;
     }
