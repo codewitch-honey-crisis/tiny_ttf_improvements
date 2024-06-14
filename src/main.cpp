@@ -123,7 +123,11 @@ static void lcd_panel_init()
     gpio_set_level((gpio_num_t)4, 1);
 }
 static uint32_t lvgl_ticks() {
+#ifdef ARDUINO
+    return millis();
+#else
     return pdTICKS_TO_MS(xTaskGetTickCount());
+#endif
 }
 void button_pressed(bool pressed, void* state) {
     
