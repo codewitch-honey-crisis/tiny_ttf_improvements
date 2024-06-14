@@ -7,5 +7,5 @@ cigen/cigen/bin/
 cigen/cigen/obj/
 cigen/.vs/
 cigen/cigen/.vs/
-lib/lvgl
+lib/lvgl/
 lvgl_6_1.zip
