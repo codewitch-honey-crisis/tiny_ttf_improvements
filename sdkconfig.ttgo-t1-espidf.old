@@ -1,3 +1,7 @@
+#
+# Automatically generated file. DO NOT EDIT.
+# Espressif IoT Development Framework (ESP-IDF) 5.2.1 Project Configuration
+#
 CONFIG_SOC_BROWNOUT_RESET_SUPPORTED="Not determined"
 CONFIG_SOC_TWAI_BRP_DIV_SUPPORTED="Not determined"
 CONFIG_SOC_DPORT_WORKAROUND="Not determined"
@@ -439,10 +443,10 @@ CONFIG_ADC_CAL_LUT_ENABLE=y
 #
 # SPI Configuration
 #
-# CONFIG_SPI_MASTER_IN_IRAM is not set
+CONFIG_SPI_MASTER_IN_IRAM=y
 CONFIG_SPI_MASTER_ISR_IN_IRAM=y
 # CONFIG_SPI_SLAVE_IN_IRAM is not set
-CONFIG_SPI_SLAVE_ISR_IN_IRAM=y
+# CONFIG_SPI_SLAVE_ISR_IN_IRAM is not set
 # end of SPI Configuration
 
 #
@@ -1090,7 +1094,6 @@ CONFIG_HAL_ASSERTION_EQUALS_SYSTEM=y
 # CONFIG_HAL_ASSERTION_DISABLE is not set
 CONFIG_HAL_DEFAULT_ASSERTION_LEVEL=0
 CONFIG_HAL_SPI_MASTER_FUNC_IN_IRAM=y
-CONFIG_HAL_SPI_SLAVE_FUNC_IN_IRAM=y
 # end of Hardware Abstraction Layer (HAL) and Low Level (LL)
 
 #

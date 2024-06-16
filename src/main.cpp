@@ -218,5 +218,4 @@ void loop()
     banner[banner_length-1]=ch;
     lv_timer_handler();
     ++iterations;
-    //vTaskDelay(pdMS_TO_TICKS(100));
 }
