@@ -164,6 +164,16 @@ void setup() {
     Serial.begin(115200);
 #else
 void loop();
+void loop_task(void* arg) {
+    int count;
+    while(1) {
+        count = 10;
+        while(count--) {
+            loop();
+        }
+        vTaskDelay(1);
+    }
+}
 extern "C" void app_main() {
 #endif
     strcpy(banner,"hello!");
@@ -183,17 +193,8 @@ extern "C" void app_main() {
     /*Change the active screen's background color*/
     lv_obj_set_style_bg_color(lv_screen_active(),lv_color_make(0xFF,0xFF,0), LV_PART_MAIN);
     ui_init();
-#ifndef ARDUINO
-    while(1) {
-        loop();
-        static int count = 0;
-        if(count++>6) {
-            vTaskDelay(5);
-            count = 0;
-        }
-
-    }
-#endif
+    TaskHandle_t handle;
+    xTaskCreatePinnedToCore(loop_task,"loop_task",4096,nullptr,24,&handle,xTaskGetAffinity(xTaskGetCurrentTaskHandle()));
 }
 #ifndef ARDUINO
 uint32_t millis() {
